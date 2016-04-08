@@ -1,0 +1,15 @@
+web/models/card.ex:30: D: Duplicate code found in web/models/list.ex:27 (mass: 16).
+web/models/list.ex:27: D: Duplicate code found in web/models/card.ex:30 (mass: 16).
+web/models/card.ex:1:11: R: Modules should have a @moduledoc tag.
+web/models/board.ex:1:11: R: Modules should have a @moduledoc tag.
+lib/phoenix_trello/permalink.ex:1:11: R: Modules should have a @moduledoc tag.
+web/views/session_view.ex:1:11: R: Modules should have a @moduledoc tag.
+web/views/registration_view.ex:1:11: R: Modules should have a @moduledoc tag.
+lib/phoenix_trello/board_channel/monitor.ex:41: F: Pipe chain should start with a raw value.
+web/models/board.ex:55: F: There should be no matches in `if` conditions.
+web/models/card.ex:71: C: There is no whitespace around parentheses/brackets most of the time, but here there is.
+web/channels/board_channel.ex:181:11: C: There are spaces around operators most of the time, but not here.
+web/channels/board_channel.ex:88:11: C: There are spaces around operators most of the time, but not here.
+lib/phoenix_trello/board_channel/monitor.ex:47: C: There is no whitespace around parentheses/brackets most of the time, but here there is.
+web/controllers/api/v1/current_user_controller.ex:15: C: There is no whitespace around parentheses/brackets most of the time, but here there is.
+
