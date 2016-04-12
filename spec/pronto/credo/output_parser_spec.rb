@@ -3,61 +3,31 @@ require 'pathname'
 require 'pronto/credo/output_parser'
 
 RSpec.describe Pronto::Credo::OutputParser do
-  let(:parser) { described_class.new }
+  let(:parser) { described_class.new(file, output) }
+  let(:file) { 'web/channels/board_channel.ex' }
+  let(:output) { File.read("#{Pathname.pwd}/spec/fixtures/credo_output.txt") }
 
   describe '#parse' do
-    subject { parser.parse(output) }
-
-    let(:output) do
-      File.read("#{Pathname.pwd}/spec/fixtures/credo_output.txt")
-    end
+    subject { parser.parse }
 
     it 'parses output' do
-      expect(subject).to eq(
-        '/Users/andrius/work/ios/TestApp/Views/MyView.swift' => [
-          {
-            line: 1,
-            column: 7,
-            level: :warning,
-            message: 'Colons should be next to the identifier when specifying a type.',
-            rule: 'colon'
-          },
-          {
-            line: 5,
-            column: 9,
-            level: :error,
-            message: "Variable name should start with a lowercase character 'name'",
-            rule: 'variable_name'
-          },
-          {
-            line: 43,
-            column: nil,
-            level: :warning,
-            message: 'Lines should not have trailing whitespace.',
-            rule: 'trailing_whitespace'
-          }
+      puts(subject)
+      expect(subject).to eq([
+          { line: 30,
+						:column=>nil, 
+						:level=>"D", 
+						:message=>"Duplicate code found in web/models/list.ex:27 (mass: 16)."},
+          { line: 181, 
+						:column=>11, 
+						:level=>"C", 
+						:message=>"There are spaces around operators most of the time, but not here."},
+          {line: 47, 
+					 :column=>nil, 
+					 :level=>"A", 
+					 :message=>"There is no whitespace around parentheses/brackets most of the time, but here there is."}
         ]
       )
     end
 
-    context 'trailing whitespace' do
-      let(:output) do
-        '/Users/andrius/work/ios/TestApp/MyView.swift:43: warning: Trailing Whitespace Violation: Lines should not have trailing whitespace. (trailing_whitespace)'
-      end
-
-      it 'parses output' do
-        expect(subject).to eq(
-          '/Users/andrius/work/ios/TestApp/MyView.swift' => [
-            {
-              line: 43,
-              column: nil,
-              level: :warning,
-              message: 'Lines should not have trailing whitespace',
-              rule: 'trailing_whitespace'
-            }
-          ]
-        )
-      end
-    end
   end
 end

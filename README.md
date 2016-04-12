@@ -18,12 +18,10 @@ mix archive.build
 mix archive.install
 ```
 
-To install credo:
+To install credo (globally):
 ```
 git clone https://github.com/dlpil/credo
 cd credo
 mix archive.build
 mix archive.install
 ```
-
-

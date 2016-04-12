@@ -4,6 +4,12 @@ require_relative 'output_parser'
 module Pronto
   module Credo
     class Wrapper
+      attr_reader :patch
+
+      def initialize(patch)
+        @patch = patch
+      end
+      
       def lint
         stdout, stderr, _ = Open3.capture3(swiftlint_executable)
         puts "WARN: pronto-credo: #{stderr}" if stderr && stderr.size > 0
