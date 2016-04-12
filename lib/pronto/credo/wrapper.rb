@@ -22,7 +22,7 @@ module Pronto
       private
 
       def credo_executable(path)
-        "mix credo --format=flycheck #{path}"
+        "mix credo --strict --format=flycheck #{path}"
       end
     end
   end

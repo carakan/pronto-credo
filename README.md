@@ -1,10 +1,10 @@
-# Credo-pronto WIP
+Credo-pronto
+============
 
 [Pronto](https://github.com/mmozuras/pronto) runner for [credo](https://github.com/rrrene/credo)
 
-Swiftlint is needed to be installed for this runner to work.
-
-# Configuring runner
+Configuring runner
+==================
 
 First need install erlang-elixir-mix properly
 
@@ -25,6 +25,18 @@ cd credo
 mix archive.build
 mix archive.install
 ```
+
+Installation
+============
+
+After install successfully credo globally you simple need install this gem
+
+```
+gem install pronto-credo
+```
+
+After the gem is installed, Pronto will already detect credo runner inside a
+elixir project.
 
 Configure checkers
 ==================

@@ -32,7 +32,6 @@ module Pronto
     def new_message(offence, line)
       path = line.patch.delta.new_file[:path]
       Message.new(path, line, offence[:level], offence[:message])
-
     end
 
     def elixir_file?(path)
