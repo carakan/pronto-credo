@@ -21,10 +21,10 @@ module Pronto
           offence_in_line = line_parts[1]
           column_line = nil
           if line_parts[2].to_i == 0
-            offence_level = TYPE_WARNING[line_parts[2].strip]
+            offence_level = TYPE_WARNINGS[line_parts[2].strip]
             offence_message = line_parts[3..-1].join(':').strip
           else
-            offence_level = TYPE_WARNING[line_parts[3].strip]
+            offence_level = TYPE_WARNINGS[line_parts[3].strip]
             column_line = line_parts[2].to_i
             offence_message = line_parts[4..-1].join(':').strip
           end
