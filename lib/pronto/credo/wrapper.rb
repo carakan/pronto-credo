@@ -9,18 +9,20 @@ module Pronto
       def initialize(patch)
         @patch = patch
       end
-      
+
       def lint
-        stdout, stderr, _ = Open3.capture3(swiftlint_executable)
+        return [] if patch.nil?
+        path = patch.new_file_full_path.to_s
+        stdout, stderr, _ = Open3.capture3(credo_executable(path))
         puts "WARN: pronto-credo: #{stderr}" if stderr && stderr.size > 0
         return {} if stdout.nil? || stdout == 0
-        OutputParser.new.parse(stdout)
+        OutputParser.new(path, stdout).parse
       end
 
       private
 
-      def credo_executable
-        ENV['PRONTO_CREDO_PATH'] || 'mix credo --format=flycheck --stdin'
+      def credo_executable(path)
+        "mix credo --format=flycheck #{path}"
       end
     end
   end

@@ -25,3 +25,8 @@ cd credo
 mix archive.build
 mix archive.install
 ```
+
+Credits
+=======
+
+- pronto-tailor [https://github.com/ajanauskas/pronto-tailor]
