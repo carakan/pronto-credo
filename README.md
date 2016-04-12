@@ -26,7 +26,13 @@ mix archive.build
 mix archive.install
 ```
 
+Configure checkers
+==================
+
+You can configure what checkers need in the project using `.credo.exs`
+[configuration file](https://github.com/rrrene/credo/blob/master/.credo.exs)
+
 Credits
 =======
 
-- pronto-tailor [https://github.com/ajanauskas/pronto-tailor]
+- [pronto-tailor](https://github.com/ajanauskas/pronto-tailor)
