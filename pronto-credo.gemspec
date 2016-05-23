@@ -26,5 +26,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.3'
 
-  spec.add_runtime_dependency 'pronto', '~> 0.5.0'
+  spec.add_runtime_dependency 'pronto', '~> 0.6.0'
 end
