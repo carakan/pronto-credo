@@ -3,10 +3,14 @@ require 'pronto/credo/wrapper'
 
 module Pronto
   class CredoRunner < Runner
-    def run(patches, _)
-      return [] unless patches
+    def initialize(_, _)
+      super
+    end
 
-      patches.select { |p| p.additions > 0 }
+    def run
+      return [] unless @patches
+
+      @patches.select { |p| p.additions > 0 }
         .select { |p| elixir_file?(p.new_file_full_path) }
         .map { |p| inspect(p) }
         .flatten
