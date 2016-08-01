@@ -7,6 +7,7 @@ module Pronto
                         'C' => :info,
                         'D' => :info,
                         'F' => :info,
+                        'A' => :info
                       }
 
       def initialize(file, output)
