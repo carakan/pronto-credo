@@ -12,7 +12,7 @@ module Pronto
 
       def lint
         return [] if patch.nil?
-        path = patch.new_file_full_path.to_s
+        path = patch.delta.new_file[:path]
         stdout, stderr, _ = Open3.capture3(credo_executable(path))
         puts "WARN: pronto-credo: #{stderr}" if stderr && stderr.size > 0
         return {} if stdout.nil? || stdout == 0
