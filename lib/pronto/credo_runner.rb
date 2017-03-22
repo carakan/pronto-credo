@@ -26,7 +26,7 @@ module Pronto
       offences.each do |offence|
         messages += patch
           .added_lines
-          .select { |line| line.new_lineno == offence[:line] }
+          .select { |line| close_to(line.new_lineno, offence[:line]) }
           .map { |line| new_message(offence, line) }
       end
 
@@ -40,6 +40,10 @@ module Pronto
 
     def elixir_file?(path)
       %w(.ex .exs).include?(File.extname(path))
+    end
+
+    def close_to(diff_line, offence_line)
+      (diff_line - offence_line).abs < 2
     end
   end
 end
