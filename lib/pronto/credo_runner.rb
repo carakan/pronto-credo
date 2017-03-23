@@ -24,13 +24,21 @@ module Pronto
       messages = []
 
       offences.each do |offence|
-        messages += patch
-          .added_lines
-          .select { |line| close_to(line.new_lineno, offence[:line]) }
-          .map { |line| new_message(offence, line) }
+        added_lines = patch.added_lines
+        bad_lines =
+          added_lines
+            .select { |line| line.new_lineno == offence[:line] }
+
+        if bad_lines == []
+          bad_lines =
+            added_lines
+              .select { |line| close_to(line.new_lineno, offence[:line]) }
+        end
+
+        messages += bad_lines.map { |line| new_message(offence, line) }
       end
 
-      messages.compact
+      messages
     end
 
     def new_message(offence, line)
