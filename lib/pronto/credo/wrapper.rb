@@ -14,8 +14,8 @@ module Pronto
         return [] if patch.nil?
         path = patch.delta.new_file[:path]
         stdout, stderr, _ = Open3.capture3(credo_executable(path))
-        puts "WARN: pronto-credo: #{stderr}" if stderr && stderr.size > 0
-        return {} if stdout.nil? || stdout == 0
+        puts "WARN: pronto-credo: #{stderr}" if stderr && !stderr.empty?
+        return {} if stdout.nil? || stdout.empty?
         OutputParser.new(path, stdout).parse
       end
 

@@ -7,8 +7,7 @@ module Pronto
                         'C' => :info,
                         'D' => :info,
                         'F' => :info,
-                        'A' => :info
-                      }
+                        'A' => :info }.freeze
 
       def initialize(file, output)
         @file = file
