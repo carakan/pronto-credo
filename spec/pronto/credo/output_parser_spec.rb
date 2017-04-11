@@ -10,7 +10,6 @@ RSpec.describe Pronto::Credo::OutputParser do
   describe '#parse' do
     subject { parser.parse }
     it 'parses output' do
-      puts(subject)
       expect(subject).to eq(
         [
           { line: 30,
