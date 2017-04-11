@@ -17,8 +17,8 @@ module Pronto
 
       def parse
         output.lines.map do |line|
-          next unless line.start_with?(file)
           line_parts = line.split(':')
+          next unless file.start_with?(line_parts[0])
           offence_in_line = line_parts[1]
           column_line = nil
           if line_parts[2].to_i == 0
