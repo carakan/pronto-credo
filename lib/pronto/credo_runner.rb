@@ -10,6 +10,8 @@ module Pronto
     def run
       return [] unless @patches
 
+      compile
+
       @patches.select { |p| p.additions > 0 }
         .select { |p| elixir_file?(p.new_file_full_path) }
         .map { |p| inspect(p) }
@@ -18,6 +20,11 @@ module Pronto
     end
 
     private
+
+    def compile
+      _, _, status = Open3.capture3("mix deps.get && mix compile --force")
+      raise "failed to compile" unless status.success?
+    end
 
     def inspect(patch)
       offences = Credo::Wrapper.new(patch).lint
