@@ -22,8 +22,12 @@ module Pronto
     private
 
     def compile
-      _, _, status = Open3.capture3("mix deps.get && mix compile --force")
-      raise "failed to compile" unless status.success?
+      stdout_stderr, status = Open3.capture2e("mix deps.get && mix compile --force")
+      if !status.success?
+        $stderr.puts "Elixir compilation error(s):"
+        $stderr.puts stdout_stderr
+        raise "failed to compile"
+      end
     end
 
     def inspect(patch)
