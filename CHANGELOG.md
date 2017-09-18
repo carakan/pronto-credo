@@ -1,3 +1,5 @@
+## 0.0.8
+- allow strict behaviour for --exit-code https://github.com/carakan/pronto-credo/commit/f1b1620e5e7959833838b8c02de6a7e263df73b9
 ## 0.0.7
 - Add environment flag to compile elixir sources https://github.com/carakan/pronto-credo/pull/7
 ## version 0.0.6
