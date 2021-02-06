@@ -4,6 +4,8 @@ require 'parallel'
 
 module Pronto
   class CredoRunner < Runner
+    ELIXIR_EXTENSIONS = %w(.ex .exs).freeze
+
     def initialize(_, _)
       super
     end
@@ -46,7 +48,7 @@ module Pronto
     end
 
     def elixir_file?(path)
-      %w(.ex .exs).include?(File.extname(path))
+      ELIXIR_EXTENSIONS.include?(File.extname(path))
     end
   end
 end
