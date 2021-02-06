@@ -15,8 +15,7 @@ module Pronto
 
       patches = @patches.select { |p| p.additions > 0 }
         .select { |p| elixir_file?(p.new_file_full_path) }
-      Parallel.map(patches, in_threads: Parallel.processor_count) { |p| inspect(p) }
-        .flatten
+      Parallel.flat_map(patches, in_threads: Parallel.processor_count) { |p| inspect(p) }
         .compact
     end
 
