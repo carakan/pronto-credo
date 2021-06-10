@@ -1,8 +1,11 @@
 require 'pronto'
 require 'pronto/credo/wrapper'
+require 'parallel'
 
 module Pronto
   class CredoRunner < Runner
+    ELIXIR_EXTENSIONS = %w(.ex .exs).freeze
+
     def initialize(_, _)
       super
     end
@@ -12,10 +15,9 @@ module Pronto
 
       compile if ENV["PRONTO_CREDO_COMPILE"] == "1"
 
-      @patches.select { |p| p.additions > 0 }
+      patches = @patches.select { |p| p.additions > 0 }
         .select { |p| elixir_file?(p.new_file_full_path) }
-        .map { |p| inspect(p) }
-        .flatten
+      Parallel.flat_map(patches, in_threads: Parallel.processor_count) { |p| inspect(p) }
         .compact
     end
 
@@ -46,7 +48,7 @@ module Pronto
     end
 
     def elixir_file?(path)
-      %w(.ex .exs).include?(File.extname(path))
+      ELIXIR_EXTENSIONS.include?(File.extname(path))
     end
   end
 end
